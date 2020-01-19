@@ -53,7 +53,7 @@ $(".btn").click(function(event){
         }
 })
 
-$(document).keypress(function(event){
+$(document).keydown(function(event){
         if (gameState){
                 return;
         }
