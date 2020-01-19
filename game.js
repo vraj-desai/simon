@@ -81,7 +81,10 @@ function nextSequence(){
 }
 
 $(document).touchstart(function(event){
-        nextSequence();
+        if (!gameState){
+                gameState = true;
+                nextSequence();
+        }
         if (gamePattern[userClickNo] === event.target.id){
                 switch(event.target.id){
                         case "red":
