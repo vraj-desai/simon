@@ -53,7 +53,7 @@ $(".btn").click(function(event){
         }
 })
 
-$(document).keyup(function(event){
+$(document).keydown(function(event){
         if (gameState){
                 return;
         }
@@ -61,6 +61,24 @@ $(document).keyup(function(event){
         gameState = true;
         nextSequence();
 })
+
+var gamePattern = [];
+var userPattern = [];
+var buttonColors = ["red", "blue", "green", "yellow"];
+var gameState = false;
+var waitingUserClick = false;
+var userClickNo = 0
+var level = 1;
+
+function nextSequence(){
+    var randNum = Math.floor(Math.random()*4);
+    var randChosenColor = buttonColors[randNum];
+    var sound = new Audio("sounds/"+randChosenColor+".mp3");
+    sound.play();
+    $("."+randChosenColor).fadeOut("quick").fadeIn("quick")
+    gamePattern.push(randChosenColor)
+    return randChosenColor;
+}
 
 $(document).touchstart(function(event){
         nextSequence();
@@ -113,22 +131,3 @@ $(document).touchstart(function(event){
                 level = 1;
         }
 })
-
-var gamePattern = [];
-var userPattern = [];
-var buttonColors = ["red", "blue", "green", "yellow"];
-var gameState = false;
-var waitingUserClick = false;
-var userClickNo = 0
-var level = 1;
-
-function nextSequence(){
-    var randNum = Math.floor(Math.random()*4);
-    var randChosenColor = buttonColors[randNum];
-    var sound = new Audio("sounds/"+randChosenColor+".mp3");
-    sound.play();
-    $("."+randChosenColor).fadeOut("quick").fadeIn("quick")
-    gamePattern.push(randChosenColor)
-    return randChosenColor;
-}
-
