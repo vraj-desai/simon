@@ -62,6 +62,58 @@ $(document).keyup(function(event){
         nextSequence();
 })
 
+$(document).touchstart(function(event){
+        nextSequence();
+        if (gamePattern[userClickNo] === event.target.id){
+                switch(event.target.id){
+                        case "red":
+                                $(".red").addClass("pressed");
+                                setTimeout(function(){$(".red").removeClass("pressed")}, 100);
+                                var sound = new Audio("sounds/red.mp3");
+                                sound.play();
+                                break;
+                        case "green":
+                                $(".green").addClass("pressed");
+                                setTimeout(function(){$(".green").removeClass("pressed")}, 100);
+                                var sound = new Audio("sounds/green.mp3");
+                                sound.play();
+                                break;
+                        case "yellow":
+                                $(".yellow").addClass("pressed");
+                                setTimeout(function(){$(".yellow").removeClass("pressed")}, 100);
+                                var sound = new Audio("sounds/yellow.mp3");
+                                sound.play();
+                                break;
+                        case "blue":
+                                $(".blue").addClass("pressed");
+                                setTimeout(function(){$(".blue").removeClass("pressed")}, 100);
+                                var sound = new Audio("sounds/blue.mp3");
+                                sound.play();
+                                break;
+            }
+            if(userClickNo === gamePattern.length-1){
+                    $("#level-title")[0].innerText = "level  " + (++level).toString();
+                    setTimeout(function(){nextSequence();}, 600);
+                    userClickNo = 0;
+            }
+            else{
+                userClickNo++;
+            }
+        }
+        else{
+                var sound = new Audio("sounds/wrong.mp3");
+                sound.play();
+                $("body").css("background-color", "red");setTimeout(function(){$("body").css("background-color", "#011F3F")}, 200);
+                $("#level-title")[0].innerText = "Game Over, Press Any Key to Restart";
+                gamePattern = [];
+                userPattern = [];
+                waitingUserClick = false;
+                userClickNo = 0;
+                gameState = false;
+                level = 1;
+        }
+})
+
 var gamePattern = [];
 var userPattern = [];
 var buttonColors = ["red", "blue", "green", "yellow"];
