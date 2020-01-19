@@ -82,7 +82,7 @@ function nextSequence(){
 
 window.addEventListener('load', function(){
  
-        document.body.addEventListener('touchend', function(e){
+        document.body.addEventListener('touchstart', function(event){
                 if (!gameState){
                         gameState = true;
                         nextSequence();
