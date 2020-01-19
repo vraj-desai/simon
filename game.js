@@ -80,7 +80,7 @@ function nextSequence(){
     return randChosenColor;
 }
 
-$(document).touchstart(function(event){
+$(document).touchend(function(event){
         if (!gameState){
                 gameState = true;
                 nextSequence();
