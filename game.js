@@ -86,6 +86,7 @@ window.addEventListener('load', function(){
                 if (!gameState){
                         gameState = true;
                         nextSequence();
+                        return;
                 }
                 if (gamePattern[userClickNo] === event.target.id){
                         switch(event.target.id){
